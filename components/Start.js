@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, TextInput, Text, Pressable } from 'react-native';
+import { StyleSheet, View, TextInput, Text, Pressable, ImageBackground } from 'react-native';
 
 export default class Start extends React.Component {
     constructor(props) {
@@ -10,6 +10,7 @@ export default class Start extends React.Component {
   render() {
     return (
         <View style={styles.container}>
+           <ImageBackground>
           
           <TextInput
           style={styles.textInput}
@@ -30,7 +31,7 @@ export default class Start extends React.Component {
             <Text style={styles.startChattingText}>Start Chatting</Text>
           </Pressable>
 
-
+          </ImageBackground>
         </View>
       )
    }
