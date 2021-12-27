@@ -13,10 +13,6 @@ import { StyleSheet, Alert, Text, TextInput, View, Button, ScrollView } from 're
 const Stack = createStackNavigator();
 
 export default class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { text: '' };
-  }
 
 
   render() {
