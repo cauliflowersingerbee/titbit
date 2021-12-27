@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, View, TextInput, Text, Pressable, ImageBackground } from 'react-native';
+import image from '../assets/titbit-assets/background-image.png' ;
 
 export default class Start extends React.Component {
     constructor(props) {
@@ -10,7 +11,7 @@ export default class Start extends React.Component {
   render() {
     return (
         <View style={styles.container}>
-           <ImageBackground>
+           <ImageBackground source={image} resizeMode="cover" style={styles.bgImage}>
           
           <TextInput
           style={styles.textInput}
@@ -94,7 +95,18 @@ export default class Start extends React.Component {
         fontWeight: '600',
         color: '#fff',
 
+    },
+
+    bgImage: {
+      flex: 1,
+      width: "100%",
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'center',
+
     }
+
+
 
     
    
