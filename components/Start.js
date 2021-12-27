@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, TextInput, Text, Pressable, ImageBackground } from 'react-native';
+import { StyleSheet, View, TextInput, TouchableOpacity, Text, Pressable, ImageBackground } from 'react-native';
 import image from '../assets/titbit-assets/background-image.png' ;
 
 export default class Start extends React.Component {
@@ -11,7 +11,12 @@ export default class Start extends React.Component {
   render() {
     return (
         <View style={styles.container}>
+
            <ImageBackground source={image} resizeMode="cover" style={styles.bgImage}>
+           
+           <Text style={styles.titleText}>Titbit</Text>
+          
+          <View style={styles.box}>
           
           <TextInput
           style={styles.textInput}
@@ -19,11 +24,40 @@ export default class Start extends React.Component {
           value={this.state.text}
           placeholder='Your Name'        
           />
-
+          
+          <View style={styles.colorSelector}>
           <Text
           style={styles.chooseBackgroundColor}
           >Choose Background Color
           </Text>
+
+							<View style={styles.colorPicker}>
+	
+								<TouchableOpacity
+									onPress={() => this.changeBgColor(this.colors.colorOne)}
+								>
+									<View style={styles.colorOne}></View>
+								</TouchableOpacity>
+                 
+								<TouchableOpacity
+									onPress={() => this.changeBgColor(this.colors.colorTwo)}
+								>
+									<View style={styles.colorTwo}></View>
+								</TouchableOpacity>
+
+								<TouchableOpacity
+									onPress={() => this.changeBgColor(this.colors.colorThree)}
+								>
+									<View style={styles.colorThree}></View>
+								</TouchableOpacity>
+
+								<TouchableOpacity
+									onPress={() => this.changeBgColor(this.colors.colorFour)}
+								>
+									<View style={styles.colorFour}></View>
+								</TouchableOpacity>
+							</View>
+              </View>
 
           <Pressable
             style={styles.startChattingButton}
@@ -32,6 +66,7 @@ export default class Start extends React.Component {
             <Text style={styles.startChattingText}>Start Chatting</Text>
           </Pressable>
 
+          </View>
           </ImageBackground>
         </View>
       )
@@ -82,6 +117,7 @@ export default class Start extends React.Component {
         fontWeight: '300', 
         color: '#757083',
         opacity: 100,
+        marginLeft: 20
     },
     startChattingButton: { 
         padding: 20,
@@ -104,9 +140,67 @@ export default class Start extends React.Component {
       justifyContent: 'center',
       alignItems: 'center',
 
-    }
+    },
 
+    titleText: {
+      fontSize: 45, 
+      fontWeight: '600', 
+      color: '#fff'
+    },
 
+    box: {
+      width: '88%',
+      height: '44%',
+      marginBottom: 10,
+      backgroundColor: '#ffffff',
+      flexGrow: 1,
+      flexShrink: 0,
+      flexDirection: 'column',
+      justifyContent: 'space-evenly',
+      alignItems: 'center',
+      paddingTop: 30,
+      paddingBottom: 30,
+      borderRadius: 5,
+      height: 300,
+      minHeight: 260,
+      maxHeight: 300,
+    },
+    colorSelector: {
+      flex: 1,
+      width: '70%',
+      textAlign: 'center',
+    },
+    
+    colorPicker: {
+      flex: 1,
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      marginTop: 15,
+    },
+    colorOne: {
+      width: 40,
+      height: 40,
+      borderRadius: 20,
+      backgroundColor: '#090C08',
+    },
+    colorTwo: {
+      width: 40,
+      height: 40,
+      borderRadius: 20,
+      backgroundColor: '#474056',
+    },
+    colorThree: {
+      width: 40,
+      height: 40,
+      borderRadius: 20,
+      backgroundColor: '#8A95A5',
+    },
+    colorFour: {
+      width: 40,
+      height: 40,
+      borderRadius: 20,
+      backgroundColor: '#B9C6AE',
+    },
 
     
    
