@@ -74,17 +74,12 @@ export default class Start extends React.Component {
         color: '#757083',
         opacity: 100,
     },
-    startChattingButton: {
-        flexDirection: 'row',
-		alignItems: 'flex-start',
+    startChattingButton: { 
+        padding: 20,
+        alignItems: 'center',
         width: '88%',
-        borderColor: '#757083',
-        fontSize: 16, 
-        fontWeight: '600', 
-        color: '#ffffff',
-        padding: 15,
-        height: 60,
-       
+        borderRadius: 0,
+        backgroundColor: '#757083',
     }
     
    
