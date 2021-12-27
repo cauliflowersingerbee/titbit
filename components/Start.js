@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, TextInput, Text, Button } from 'react-native';
+import { StyleSheet, View, TextInput, Text, Pressable } from 'react-native';
 
 export default class Start extends React.Component {
     constructor(props) {
@@ -10,20 +10,27 @@ export default class Start extends React.Component {
   render() {
     return (
         <View style={styles.container}>
+          
           <TextInput
           style={styles.textInput}
           onChangeText={(text) => this.setState({text})}
           value={this.state.text}
           placeholder='Your Name'        
           />
+
           <Text
           style={styles.chooseBackgroundColor}
-          >Choose Background Color</Text>
-          <Button
+          >Choose Background Color
+          </Text>
+
+          <Pressable
             style={styles.startChattingButton}
-            title="Start Chatting"
             onPress={() => this.props.navigation.navigate('Chat')}
-          />
+          >
+            <Text style={styles.startChattingText}>Start Chatting</Text>
+          </Pressable>
+
+
         </View>
       )
    }
@@ -31,8 +38,8 @@ export default class Start extends React.Component {
 
  const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        flexDirection: 'column',
+    flex: 1,
+    flexDirection: 'column',
 		alignItems: 'center',
 		justifyContent: 'space-evenly',
     },
@@ -60,13 +67,13 @@ export default class Start extends React.Component {
 		borderRadius: 5,
 		marginBottom: 25,
 		padding: 10,
-        backgroundColor: '#ffffff',
+    backgroundColor: '#ffffff',
 		borderWidth: 1,
 		borderColor: '#000',
-		height: 50,
-        fontSize: 16, 
-        fontWeight: '300', 
-        color: '#757083',
+    height: 50,
+    fontSize: 16, 
+    fontWeight: '300', 
+    color: '#757083',
 	},
     chooseBackgroundColor: {
         fontSize: 16, 
@@ -80,7 +87,14 @@ export default class Start extends React.Component {
         width: '88%',
         borderRadius: 0,
         backgroundColor: '#757083',
+    },
+    startChattingText: {
+        fontSize: 16,
+        fontWeight: '600',
+        color: '#fff',
+
     }
+
     
    
  });
