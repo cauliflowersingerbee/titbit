@@ -31,12 +31,16 @@ export default class Start extends React.Component {
           
           <View style={styles.box}>
           
+          <View style={styles.inputBox}>
+
           <TextInput
           style={styles.textInput}
           onChangeText={(text) => this.setState({name: text})}
           value={this.state.name}
           placeholder='Your Name'        
           />
+          </View>
+          
           
           <View style={styles.colorSelector}>
           <Text
@@ -113,8 +117,8 @@ export default class Start extends React.Component {
 		minHeight: 260,
 		maxHeight: 300,
 	},
-    textInput: {
-		flexDirection: 'row',
+  inputBox: {
+    flexDirection: 'row',
 		alignItems: 'flex-start',
 		width: '88%',
 		borderRadius: 5,
@@ -124,6 +128,20 @@ export default class Start extends React.Component {
 		borderWidth: 1,
 		borderColor: '#000',
     height: 50,
+    fontSize: 16, 
+    fontWeight: '300', 
+    color: '#757083',
+  },
+    textInput: {
+		flexDirection: 'row',
+		alignItems: 'flex-start',
+		width: '88%',
+		borderRadius: 5,
+		marginBottom: 5,
+    backgroundColor: '#ffffff',
+		borderWidth: 1,
+		borderColor: '#fff',
+    height: 30,
     fontSize: 16, 
     fontWeight: '300', 
     color: '#757083',
