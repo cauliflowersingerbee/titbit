@@ -5,7 +5,9 @@ import image from '../assets/titbit-assets/background-image.png' ;
 export default class Start extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { text: '' };
+        this.state = { name: '',
+        bgcolor: '' 
+       };
       }
 
   render() {
@@ -61,7 +63,7 @@ export default class Start extends React.Component {
 
           <Pressable
             style={styles.startChattingButton}
-            onPress={() => this.props.navigation.navigate('Chat')}
+            onPress={() => this.props.navigation.navigate('Chat', { name: this.state.name })}
           >
             <Text style={styles.startChattingText}>Start Chatting</Text>
           </Pressable>
