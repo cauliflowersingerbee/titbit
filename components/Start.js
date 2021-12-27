@@ -11,13 +11,16 @@ export default class Start extends React.Component {
     return (
         <View style={styles.container}>
           <TextInput
-          style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+          style={styles.textInput}
           onChangeText={(text) => this.setState({text})}
           value={this.state.text}
           placeholder='Your Name'        
           />
-          <Text>Choose Background Color</Text>
+          <Text
+          style={styles.chooseBackgroundColor}
+          >Choose Background Color</Text>
           <Button
+            style={styles.startChattingButton}
             title="Start Chatting"
             onPress={() => this.props.navigation.navigate('Chat')}
           />
@@ -33,4 +36,56 @@ export default class Start extends React.Component {
 		alignItems: 'center',
 		justifyContent: 'space-evenly',
     },
+    box: {
+		width: '88%',
+		height: '44%',
+		marginBottom: 30,
+		backgroundColor: '#ffffff',
+		flexGrow: 1,
+		flexShrink: 0,
+		flexDirection: 'column',
+		justifyContent: 'space-evenly',
+		alignItems: 'center',
+		paddingTop: 30,
+		paddingBottom: 30,
+		borderRadius: 10,
+		height: 260,
+		minHeight: 260,
+		maxHeight: 300,
+	},
+    textInput: {
+		flexDirection: 'row',
+		alignItems: 'flex-start',
+		width: '88%',
+		borderRadius: 5,
+		marginBottom: 25,
+		padding: 10,
+        backgroundColor: '#ffffff',
+		borderWidth: 1,
+		borderColor: '#000',
+		height: 50,
+        fontSize: 16, 
+        fontWeight: '300', 
+        color: '#757083',
+	},
+    chooseBackgroundColor: {
+        fontSize: 16, 
+        fontWeight: '300', 
+        color: '#757083',
+        opacity: 100,
+    },
+    startChattingButton: {
+        flexDirection: 'row',
+		alignItems: 'flex-start',
+        width: '88%',
+        borderColor: '#757083',
+        fontSize: 16, 
+        fontWeight: '600', 
+        color: '#ffffff',
+        padding: 15,
+        height: 60,
+       
+    }
+    
+   
  });
