@@ -10,6 +10,17 @@ export default class Start extends React.Component {
        };
       }
 
+    changeBgColor = (newColor) => {
+      this.setState({ bgcolor: newColor });
+    };
+
+    colors = {
+      colorOne: "#090C08",
+      colorTwo: "#474056",
+      colorThree: "#8A95A5",
+      colorFour: "#B9C6AE",
+  };
+
   render() {
     return (
         <View style={styles.container}>
@@ -22,8 +33,8 @@ export default class Start extends React.Component {
           
           <TextInput
           style={styles.textInput}
-          onChangeText={(text) => this.setState({text})}
-          value={this.state.text}
+          onChangeText={(text) => this.setState({name: text})}
+          value={this.state.name}
           placeholder='Your Name'        
           />
           
@@ -63,7 +74,10 @@ export default class Start extends React.Component {
 
           <Pressable
             style={styles.startChattingButton}
-            onPress={() => this.props.navigation.navigate('Chat', { name: this.state.name })}
+            onPress={() => this.props.navigation.navigate('Chat', { 
+              name: this.state.name, 
+              bgcolor: this.state.bgcolor,
+            })}
           >
             <Text style={styles.startChattingText}>Start Chatting</Text>
           </Pressable>
