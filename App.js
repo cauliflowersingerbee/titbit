@@ -14,16 +14,16 @@ const Stack = createStackNavigator();
 
 export default class App extends Component {
 
-
   render() {
   return (
     <NavigationContainer>
     <Stack.Navigator
-        initialRouteName="Start"
+        initialRouteName="Titbit"
       >
         <Stack.Screen
-          name="Start"
+          name="Titbit"
           component={Start}
+          options={{ title: 'Let\'s get chatting!' }}
         />
         <Stack.Screen
           name="Chat"
