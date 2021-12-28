@@ -1,6 +1,7 @@
 import React from 'react';
-import { StyleSheet, View, TextInput, TouchableOpacity, Text, Pressable, ImageBackground } from 'react-native';
+import { StyleSheet, View, TextInput, Image, TouchableOpacity, Text, Pressable, ImageBackground } from 'react-native';
 import image from '../assets/titbit-assets/background-image.png' ;
+import userIcon from '../assets/titbit-assets/titbit-user-icon.png' ;
 
 export default class Start extends React.Component {
     constructor(props) {
@@ -32,6 +33,8 @@ export default class Start extends React.Component {
           <View style={styles.box}>
           
           <View style={styles.inputBox}>
+
+          <Image source={userIcon} style={styles.userIcon}/>
 
           <TextInput
           style={styles.textInput}
@@ -175,6 +178,16 @@ export default class Start extends React.Component {
       alignItems: 'center',
 
     },
+
+    userIcon:{
+      padding: 10,
+      margin: 5,
+      height: 20,
+      width: 20,
+      resizeMode: 'stretch',
+      alignItems: 'center',
+      opacity: 0.5
+  },
 
     titleText: {
       fontSize: 45, 
