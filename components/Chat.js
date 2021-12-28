@@ -24,7 +24,15 @@ export default class Chat extends Component {
         },
       ],
     })
-  }
+  };
+
+  onSend(messages = []) {
+    this.setState(previousState => ({
+      messages: GiftedChat.append(previousState.messages, messages),
+    }))
+  };
+
+
   render() {
     //let name = this.props.route.params.name; // OR ...
     let { name } = this.props.route.params;
@@ -32,13 +40,25 @@ export default class Chat extends Component {
 
     let {bgcolor} = this.props.route.params;
 return (
+  <View>
   <View style={{
     flex: 1,
     alignItems:'center', 
     justifyContent:'center', 
     backgroundColor: bgcolor ? bgcolor : "white",}}>
-        
+
+    <GiftedChat
+  messages={this.state.messages}
+  onSend={messages => this.onSend(messages)}
+  user={{
+    _id: 1,
+  }}
+/>    
 </View>
+
+  </View>
+
+
 )
     
 
