@@ -9,7 +9,22 @@ export default class Chat extends Component {
       messages: [],
     }
   }
-
+  componentDidMount() {
+    this.setState({
+      messages: [
+        {
+          _id: 1,
+          text: 'Hello developer',
+          createdAt: new Date(),
+          user: {
+            _id: 2,
+            name: 'React Native',
+            avatar: 'https://placeimg.com/140/140/any',
+          },
+        },
+      ],
+    })
+  }
   render() {
     //let name = this.props.route.params.name; // OR ...
     let { name } = this.props.route.params;
