@@ -1,7 +1,14 @@
 import React, { Component } from 'react';
+import { GiftedChat } from 'react-native-gifted-chat'
 import { View, Text } from 'react-native';
 
 export default class Chat extends Component {
+  constructor() {
+    super();
+    this.state = {
+      messages: [],
+    }
+  }
 
   render() {
     //let name = this.props.route.params.name; // OR ...
