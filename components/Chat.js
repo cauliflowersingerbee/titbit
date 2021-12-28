@@ -45,14 +45,13 @@ return (
     flex: 1,
     alignItems:'center', 
     justifyContent:'center', 
-    backgroundColor: bgcolor ? bgcolor : "white",}}>
+    backgroundColor: bgcolor ? bgcolor : "#fff"}}>
 
     <GiftedChat
   messages={this.state.messages}
   onSend={messages => this.onSend(messages)}
   user={{
-    _id: 1,
-  }}
+    _id: 1 }}
 />    
 </View>
 
