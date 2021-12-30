@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { GiftedChat } from 'react-native-gifted-chat'
+import { GiftedChat, Bubble } from 'react-native-gifted-chat'
 import { StyleSheet, View, Platform, KeyboardAvoidingView } from 'react-native';
 
 export default class Chat extends Component {
@@ -38,7 +38,18 @@ export default class Chat extends Component {
     }));
   };
 
-
+  renderBubble(props) {
+    return (
+      <Bubble
+        {...props}
+        wrapperStyle={{
+          right: {
+            backgroundColor: '#3066BE'
+          }
+        }}
+      />
+    )
+  }
   render() {
     //let name = this.props.route.params.name; // OR ...
     let { name } = this.props.route.params;
@@ -53,6 +64,7 @@ return (
       backgroundColor: bgColor ? bgColor : "#fff"}}>
     <View style={styles.giftedChat}>
           <GiftedChat
+        renderBubble={this.renderBubble.bind(this)}
         messages={this.state.messages}
         onSend={messages => this.onSend(messages)}
         user={{
