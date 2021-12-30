@@ -4,14 +4,16 @@ import image from '../assets/titbit-assets/background-image.png' ;
 import userIcon from '../assets/titbit-assets/titbit-user-icon.png' ;
 
 export default class Start extends React.Component {
-    constructor(props) {
-        this.state = { name: '',
-        bgcolor: '' 
-       };
-      }
+  constructor(props) {
+    super(props);
+    this.state = { 
+        name: '',
+        bgColor: ''
+    };
+}
 
     changeBgColor = (newColor) => {
-      this.setState({ bgcolor: newColor });
+      this.setState({ bgColor: newColor });
     };
 
     colors = {
@@ -80,11 +82,13 @@ export default class Start extends React.Component {
 
           <Pressable
             style={styles.startChattingButton}
-            onPress={() => this.props.navigation.navigate('Chat', { 
-              name: this.state.name, 
-              bgcolor: this.state.bgcolor,
-            })}
-          >
+            onPress={() =>
+              this.props.navigation.navigate("Chat", {
+                  name: this.state.name,
+                  bgColor: this.state.bgColor,
+              })}
+          >  
+            
             <Text style={styles.startChattingText}>Start Chatting</Text>
           </Pressable>
 
