@@ -29,6 +29,7 @@ export default class Chat extends Component {
           createdAt: new Date(),
           system: true,
          },
+         
       ],
     })
   };
