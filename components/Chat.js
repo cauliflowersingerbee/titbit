@@ -23,8 +23,9 @@ export default class Chat extends Component {
           },
         },
         {
+          //system message stating that user has entered the chat
           _id: 2,
-          text: 'This is a system message',
+          text: `${this.props.route.params.name} has entered the chat. `,
           createdAt: new Date(),
           system: true,
          },
