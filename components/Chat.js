@@ -7,7 +7,7 @@ export default class Chat extends Component {
     super();
     this.state = {
       messages: [],
-    }
+    };
   }
   componentDidMount() {
     this.setState({
@@ -29,7 +29,7 @@ export default class Chat extends Component {
   onSend(messages = []) {
     this.setState(previousState => ({
       messages: GiftedChat.append(previousState.messages, messages),
-    }))
+    }));
   };
 
 
