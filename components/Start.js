@@ -55,24 +55,41 @@ export default class Start extends React.Component {
 							<View style={styles.colorPicker}>
 	
 								<TouchableOpacity
+                accessible={true}
+                accessibilityLabel="Select Rich Black background"
+                accessibilityHint="Choose Rich Black background for the chat screen"
+                accessibilityRole="button"
+                onPress={() => this.changeBgColor(this.colors.pink)}
 									onPress={() => this.changeBgColor(this.colors.colorOne)}
 								>
 									<View style={styles.colorOne}></View>
 								</TouchableOpacity>
                  
 								<TouchableOpacity
+                 accessible={true}
+                 accessibilityLabel="Select Purple Taupe background"
+                 accessibilityHint="Choose Purple Taupe background for the chat screen"
+                 accessibilityRole="button"
 									onPress={() => this.changeBgColor(this.colors.colorTwo)}
 								>
 									<View style={styles.colorTwo}></View>
 								</TouchableOpacity>
 
 								<TouchableOpacity
+                 accessible={true}
+                 accessibilityLabel="Select Light Slate Gray background"
+                 accessibilityHint="Choose Light Slate Gray background for the chat screen"
+                 accessibilityRole="button"
 									onPress={() => this.changeBgColor(this.colors.colorThree)}
 								>
 									<View style={styles.colorThree}></View>
 								</TouchableOpacity>
 
 								<TouchableOpacity
+                 accessible={true}
+                 accessibilityLabel="Select Laurel Green background"
+                 accessibilityHint="Choose  Laurel Green for the chat screen"
+                 accessibilityRole="button"
 									onPress={() => this.changeBgColor(this.colors.colorFour)}
 								>
 									<View style={styles.colorFour}></View>
@@ -82,6 +99,10 @@ export default class Start extends React.Component {
 
           <Pressable
             style={styles.startChattingButton}
+            accessible={true}
+							accessibilityLabel="Tap here to start chatting"
+							accessibilityHint="Entering the chat screen"
+							accessibilityRole="button"
             onPress={() =>
               this.props.navigation.navigate("Chat", {
                   name: this.state.name,
