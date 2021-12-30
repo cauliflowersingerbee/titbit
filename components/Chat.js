@@ -51,7 +51,8 @@ return (
   messages={this.state.messages}
   onSend={messages => this.onSend(messages)}
   user={{
-    _id: 1 }}
+    _id: 1,
+     }}
 />    
 </View>
 
