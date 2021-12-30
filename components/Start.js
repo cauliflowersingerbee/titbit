@@ -5,7 +5,6 @@ import userIcon from '../assets/titbit-assets/titbit-user-icon.png' ;
 
 export default class Start extends React.Component {
     constructor(props) {
-        super(props);
         this.state = { name: '',
         bgcolor: '' 
        };
