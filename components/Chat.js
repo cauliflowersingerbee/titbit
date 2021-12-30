@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { GiftedChat } from 'react-native-gifted-chat'
-import { View, Text } from 'react-native';
+import { View, Platform, KeyboardAvoidingView } from 'react-native';
 
 export default class Chat extends Component {
   constructor() {
@@ -54,6 +54,8 @@ return (
           name: this.state.name,
           }}
       />    
+      { Platform.OS === 'android' ? <KeyboardAvoidingView behavior="height" /> : null
+ }
   </View>
 
 </View>
