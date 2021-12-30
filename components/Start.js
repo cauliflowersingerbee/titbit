@@ -100,8 +100,8 @@ export default class Start extends React.Component {
           <Pressable
             style={styles.startChattingButton}
             accessible={true}
-							accessibilityLabel="Tap here to start chatting"
-							accessibilityHint="Entering the chat screen"
+							accessibilityLabel="Start chatting"
+							accessibilityHint="Lets you enter the chat screen"
 							accessibilityRole="button"
             onPress={() =>
               this.props.navigation.navigate("Chat", {
