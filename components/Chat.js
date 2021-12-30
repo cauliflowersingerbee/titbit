@@ -41,20 +41,20 @@ export default class Chat extends Component {
     let {bgcolor} = this.props.route.params;
 return (
   <View>
-  <View style={{
-    flex: 1,
-    alignItems:'center', 
-    justifyContent:'center', 
-    backgroundColor: bgcolor ? bgcolor : "#fff"}}>
+    <View style={{
+      flex: 1,
+      alignItems:'center', 
+      justifyContent:'center', 
+      backgroundColor: bgcolor ? bgcolor : "#fff"}}>
 
-    <GiftedChat
-  messages={this.state.messages}
-  onSend={messages => this.onSend(messages)}
-  user={{
-    _id: 1,
-     }}
-/>    
-</View>
+          <GiftedChat
+        messages={this.state.messages}
+        onSend={messages => this.onSend(messages)}
+        user={{
+          _id: 1,
+          }}
+      />    
+  </View>
 
   </View>
 
