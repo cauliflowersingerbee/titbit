@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { GiftedChat } from 'react-native-gifted-chat'
-import { View, Platform, KeyboardAvoidingView } from 'react-native';
+import { StyleSheet, View, Platform, KeyboardAvoidingView } from 'react-native';
 
 export default class Chat extends Component {
   constructor() {
@@ -45,7 +45,7 @@ return (
       alignItems:'center', 
       justifyContent:'center', 
       backgroundColor: bgColor ? bgColor : "#fff"}}>
-    <View>
+    <View style={styles.giftedChat}>
           <GiftedChat
         messages={this.state.messages}
         onSend={messages => this.onSend(messages)}
@@ -59,10 +59,20 @@ return (
   </View>
 
 </View>
+)}}
 
-
-)
-    
-
-  };
-}
+const styles = StyleSheet.create({
+  container: {
+      flex: 1,
+      alignItems:'center', 
+      justifyContent:'center'
+  },
+  giftedChat: {
+      flex: 1,
+      width: "88%",
+      borderRadius: 5,
+      paddingBottom: 10,
+      justifyContent: "center",
+     
+  },
+})
