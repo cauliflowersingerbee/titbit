@@ -61,6 +61,7 @@ export default class Chat extends Component {
     let { name } = this.props.route.params;
     this.props.navigation.setOptions({ title: name });
 
+    //rendering color picked by user
     let {bgColor} = this.props.route.params;
 return (
   <View style={{
