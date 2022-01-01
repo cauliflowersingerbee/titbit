@@ -57,7 +57,7 @@ export default class Chat extends Component {
     )
   }
   render() {
-    //let name = this.props.route.params.name; // OR ...
+    //adding name to top of chat screen
     let { name } = this.props.route.params;
     this.props.navigation.setOptions({ title: name });
 
