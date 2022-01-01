@@ -63,6 +63,7 @@ export default class Chat extends Component {
 
     //rendering color picked by user
     let {bgColor} = this.props.route.params;
+
 return (
   <View style={{
       flex: 1,
@@ -98,6 +99,5 @@ const styles = StyleSheet.create({
       borderRadius: 5,
       paddingBottom: 10,
       justifyContent: "center",
-     
   },
 })
