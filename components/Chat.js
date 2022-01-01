@@ -25,7 +25,7 @@ export default class Chat extends Component {
         {
           //system message stating that user has entered the chat
           _id: 2,
-          text: `${this.props.route.params.name} has entered the chat. `,
+          text: `${this.props.route.params.name} has entered the chat.`,
           createdAt: new Date(),
           system: true,
          },
@@ -41,13 +41,17 @@ export default class Chat extends Component {
   };
 
   renderBubble(props) {
+    //adding color to text bubbles
     return (
       <Bubble
         {...props}
         wrapperStyle={{
           right: {
             backgroundColor: '#3066BE'
-          }
+          },
+          left: {
+						backgroundColor: '#F3C677',
+					},
         }}
       />
     )
