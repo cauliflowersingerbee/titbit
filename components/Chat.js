@@ -5,7 +5,7 @@ import { StyleSheet, View, Platform, KeyboardAvoidingView } from 'react-native';
 const firebase = require('firebase');
 require('firebase/firestore');
 
-//initializing firebase:
+//configuring firebase:
 const firebaseConfig = {
   apiKey: "AIzaSyD8TKk1420b4YNd6hB8e4oiz1ATXlad784",
   authDomain: "titbit-753a6.firebaseapp.com",
@@ -15,6 +15,7 @@ const firebaseConfig = {
   appId: "1:29843296666:web:1ecc30389947f4740a2a23"
 };
 
+//initializing firebase
 if (!firebase.apps.length){
   firebase.initializeApp(firebaseConfig);
   }
