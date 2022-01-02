@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import { GiftedChat, Bubble } from 'react-native-gifted-chat'
 import { StyleSheet, View, Platform, KeyboardAvoidingView } from 'react-native';
 //importing firebase:
-const firebase = require('firebase');
-require('firebase/firestore');
+import * as firebase from 'firebase';
+import "firebase/firestore";
+//const firebase = require('firebase');
+//require('firebase/firestore');
 
 //configuring firebase:
 const firebaseConfig = {
