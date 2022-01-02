@@ -5,6 +5,21 @@ import { StyleSheet, View, Platform, KeyboardAvoidingView } from 'react-native';
 const firebase = require('firebase');
 require('firebase/firestore');
 
+//initializing firebase:
+const firebaseConfig = {
+  apiKey: "AIzaSyD8TKk1420b4YNd6hB8e4oiz1ATXlad784",
+  authDomain: "titbit-753a6.firebaseapp.com",
+  projectId: "titbit-753a6",
+  storageBucket: "titbit-753a6.appspot.com",
+  messagingSenderId: "29843296666",
+  appId: "1:29843296666:web:1ecc30389947f4740a2a23"
+};
+
+if (!firebase.apps.length){
+  firebase.initializeApp(firebaseConfig);
+  }
+
+
 export default class Chat extends Component {
   constructor() {
     super();
