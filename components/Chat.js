@@ -17,13 +17,6 @@ const firebaseConfig = {
   appId: "1:29843296666:web:1ecc30389947f4740a2a23"
 };
 
-//initializing firebase
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-//if (!firebase.apps.length){
-  //firebase.initializeApp(firebaseConfig);
-  //}
-
 
 export default class Chat extends Component {
   constructor() {
@@ -31,9 +24,14 @@ export default class Chat extends Component {
     this.state = {
       messages: [],
     };
-  }
+  };
   
-  
+//initializing firebase
+if (!firebase.apps.length){
+firebase.initializeApp(firebaseConfig);
+}
+
+
   componentDidMount() {
     this.setState({
       messages: [
@@ -57,6 +55,16 @@ export default class Chat extends Component {
          
       ],
     })
+
+    //referencing firestone collection
+    this.referenceChatMessages = firebase.firestore().collection("messages");
+
+  this.unsubscribe = this.referenceChatMessages.onSnapshot(this.onCollectionUpdate)
+}
+
+ componentWillUnmount() {
+   this.unsubscribe();
+}
   };
 
   onSend(messages = []) {
