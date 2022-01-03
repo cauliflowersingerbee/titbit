@@ -56,8 +56,8 @@ firebase.initializeApp(firebaseConfig);
       ],
     })
 
-    //referencing firestone collection
-    this.referenceChatMessages = firebase.firestore().collection("messages").where("uid", "==", this.state.uid);;
+    //referencing active user's firestone collection
+    this.referenceChatMessagesUser = firebase.firestore().collection("messages").where("uid", "==", this.state.uid);;
 
   this.authUnsubscribe = firebase.auth().onAuthStateChanged(async (user) => {
     if (!user) {
@@ -70,10 +70,13 @@ firebase.initializeApp(firebaseConfig);
       loggedInText: 'Hello there',
       messages: [],
     });
-    this.unsubscribe = this.referenceChatMessages
-       .orderBy("createdAt", "desc")
-       .onSnapshot(this.onCollectionUpdate);
-  });
+    
+    this.unsubscribeChatMessageUser = this.referenceChatMessagesUser.onSnapshot(this.onCollectionUpdate);
+    ;
+   // this.unsubscribe = this.referenceChatMessages
+     //  .orderBy("createdAt", "desc")
+       //.onSnapshot(this.onCollectionUpdate);
+  //});
 }
 
   //function to listen for changes in collection and retrieve that change in order to update state and render in view
@@ -111,6 +114,7 @@ addMessages() {
       user: this.state.user,
       image: message.image || "",
       location: message.location || null,
+       uid: this.state.uid,
   });
 }
 
