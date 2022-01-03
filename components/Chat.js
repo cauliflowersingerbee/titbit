@@ -61,21 +61,14 @@ export default class Chat extends Component {
         _id: user.uid,
         name: name,
         avatar: "https://placeimg.com/140/140/any",
-    },
+       },
     })
 
-    //referencing active user's firestone collection
+    //updating the collection
     this.referenceChatMessagesUser = firebase.firestore().collection("messages").where("uid", "==", this.state.uid);
 
  
   
-    
-    this.setState({
-      uid: user.uid,
-      loggedInText: 'Hello there',
-      messages: [],
-    });
-    
     this.unsubscribeChatMessageUser = this.referenceChatMessagesUser.onSnapshot(this.onCollectionUpdate);
     ;
    // this.unsubscribe = this.referenceChatMessages
