@@ -52,27 +52,16 @@ export default class Chat extends Component {
         await firebase.auth().signInAnonymously();
       }
 
+    //updating user state with currently active user data
     this.setState({
-      messages: [
-        {
-          _id: 1,
-          text: 'Hello developer',
-          createdAt: new Date(),
-          user: {
-            _id: 2,
-            name: 'React Native',
-            avatar: 'https://placeimg.com/140/140/any',
-          },
-        },
-        {
-          //system message stating that user has entered the chat
-          _id: 2,
-          text: `${this.props.route.params.name} has entered the chat.`,
-          createdAt: new Date(),
-          system: true,
-         },
-         
-      ],
+      uid: user.uid,
+      loggedInText: 'Hello there',
+      messages: [],
+      user: {
+        _id: user.uid,
+        name: name,
+        avatar: "https://placeimg.com/140/140/any",
+    },
     })
 
     //referencing active user's firestone collection
@@ -80,7 +69,7 @@ export default class Chat extends Component {
 
  
   
-    //update user state with currently active user data
+    
     this.setState({
       uid: user.uid,
       loggedInText: 'Hello there',
