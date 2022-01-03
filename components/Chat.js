@@ -62,10 +62,8 @@ export default class Chat extends Component {
         avatar: "https://placeimg.com/140/140/any",
        },
     });
-
-    //updating the collection
+    //referencing current user
     this.referenceChatMessagesUser = firebase.firestore().collection("messages").where("uid", "==", this.state.uid);
-
  
   
     this.unsubscribeChatMessageUser = this.referenceChatMessagesUser.onSnapshot(this.onCollectionUpdate);
