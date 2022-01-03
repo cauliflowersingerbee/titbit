@@ -90,7 +90,8 @@ onCollectionUpdate = (querySnapshot) => {
           name: data.user.name,
           avatar: data.user.avatar
       },
-
+      image: data.image || null,
+      location: data.location || null,
     });
   });
   this.setState({
