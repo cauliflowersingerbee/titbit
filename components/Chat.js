@@ -50,8 +50,7 @@ export default class Chat extends Component {
     this.authUnsubscribe = firebase.auth().onAuthStateChanged(async (user) => {
       if (!user) {
         await firebase.auth().signInAnonymously();
-      }
-
+      }   
     //updating user state with currently active user data
     this.setState({
       uid: user.uid,
@@ -62,7 +61,7 @@ export default class Chat extends Component {
         name: name,
         avatar: "https://placeimg.com/140/140/any",
        },
-    })
+    });
 
     //updating the collection
     this.referenceChatMessagesUser = firebase.firestore().collection("messages").where("uid", "==", this.state.uid);
@@ -75,7 +74,7 @@ export default class Chat extends Component {
      //  .orderBy("createdAt", "desc")
        //.onSnapshot(this.onCollectionUpdate);
   //});
-}
+},
 
   //function to listen for changes in collection and retrieve that change in order to update state and render in view
 onCollectionUpdate = (querySnapshot) => {
