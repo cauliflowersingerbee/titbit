@@ -35,14 +35,17 @@ export default class Chat extends Component {
     firebase.initializeApp(firebaseConfig);
     }
 
+  // referencing Firestore message collection
+  this.referenceChatMessages = firebase.firestore().collection("messages");
+
   };
 
-  
-  
-
-
-
   componentDidMount() {
+
+    //adding name to top of chat screen
+    let { name } = this.props.route.params;
+    this.props.navigation.setOptions({ title: name });
+    
     this.setState({
       messages: [
         {
@@ -67,7 +70,7 @@ export default class Chat extends Component {
     })
 
     //referencing active user's firestone collection
-    this.referenceChatMessagesUser = firebase.firestore().collection("messages").where("uid", "==", this.state.uid);;
+    this.referenceChatMessagesUser = firebase.firestore().collection("messages").where("uid", "==", this.state.uid);
 
   this.authUnsubscribe = firebase.auth().onAuthStateChanged(async (user) => {
     if (!user) {
@@ -156,9 +159,6 @@ addMessages() {
     )
   }
   render() {
-    //adding name to top of chat screen
-    let { name } = this.props.route.params;
-    this.props.navigation.setOptions({ title: name });
 
     //rendering color picked by user
     let {bgColor} = this.props.route.params;
