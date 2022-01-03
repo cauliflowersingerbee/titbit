@@ -46,17 +46,16 @@ export default class Chat extends Component {
     let { name } = this.props.route.params;
     this.props.navigation.setOptions({ title: name });
 
+    // listening to updates in the collection
+   this.unsubscribe = this.referenceChatMessages
+   .orderBy("createdAt", "desc")
+   .onSnapshot(this.onCollectionUpdate);
+
     //signing in anonymously
     this.authUnsubscribe = firebase.auth().onAuthStateChanged(async (user) => {
       if (!user) {
         await firebase.auth().signInAnonymously();
-      }   
-
-   // listening to updates in the collection
-   this.unsubscribe = this.referenceChatMessages
-     .orderBy("createdAt", "desc")
-     .onSnapshot(this.onCollectionUpdate);
-      
+      }         
     //updating user state with currently active user data
     this.setState({
       uid: user.uid,
@@ -70,12 +69,12 @@ export default class Chat extends Component {
     });
     //referencing current user
     this.referenceChatMessagesUser = firebase.firestore().collection("messages").where("uid", "==", this.state.uid);
- 
+  });
   
     this.unsubscribeChatMessageUser = this.referenceChatMessagesUser.onSnapshot(this.onCollectionUpdate);
     ;
   
-},
+
 
   //function to listen for changes in collection and retrieve that change in order to update state and render in view
 onCollectionUpdate = (querySnapshot) => {
