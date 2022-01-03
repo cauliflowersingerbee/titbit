@@ -62,10 +62,7 @@ firebase.initializeApp(firebaseConfig);
   this.unsubscribe = this.referenceChatMessages.onSnapshot(this.onCollectionUpdate)
 }
 
- componentWillUnmount() {
-   this.unsubscribe();
-}
- //function to listen for changes in collection and retrieve that change in order to update state and render in view
+  //function to listen for changes in collection and retrieve that change in order to update state and render in view
 onCollectionUpdate = (querySnapshot) => {
   const messages = [];
   // go through each document
@@ -85,7 +82,7 @@ onCollectionUpdate = (querySnapshot) => {
     });
   });
   this.setState({
-    messages,
+    messages: messages
   });
 };
 
@@ -94,7 +91,11 @@ onCollectionUpdate = (querySnapshot) => {
       messages: GiftedChat.append(previousState.messages, messages),
     }));
   };
-
+  
+  componentWillUnmount() {
+    this.unsubscribe();
+ }
+ 
   renderBubble(props) {
     //adding color to text bubbles
     return (
