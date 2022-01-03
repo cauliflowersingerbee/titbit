@@ -18,9 +18,11 @@ const firebaseConfig = {
 };
 
 //initializing firebase
-if (!firebase.apps.length){
-  firebase.initializeApp(firebaseConfig);
-  }
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+//if (!firebase.apps.length){
+  //firebase.initializeApp(firebaseConfig);
+  //}
 
 
 export default class Chat extends Component {
@@ -30,6 +32,8 @@ export default class Chat extends Component {
       messages: [],
     };
   }
+  
+  
   componentDidMount() {
     this.setState({
       messages: [
