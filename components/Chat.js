@@ -65,7 +65,22 @@ firebase.initializeApp(firebaseConfig);
  componentWillUnmount() {
    this.unsubscribe();
 }
-  };
+ // listener for updates in collection
+onCollectionUpdate = (querySnapshot) => {
+  const messages = [];
+  // go through each document
+  querySnapshot.forEach((doc) => {
+    // get the QueryDocumentSnapshot's data
+    var data = doc.data();
+    lists.push({
+      name: data.name,
+      items: data.items.toString(),
+    });
+  });
+  this.setState({
+    messages,
+  });
+};
 
   onSend(messages = []) {
     this.setState(previousState => ({
