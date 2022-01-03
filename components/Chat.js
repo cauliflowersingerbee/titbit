@@ -69,10 +69,11 @@ export default class Chat extends Component {
     });
     //referencing current user
     this.referenceChatMessagesUser = firebase.firestore().collection("messages").where("uid", "==", this.state.uid);
-  });
+
   
     this.unsubscribeChatMessageUser = this.referenceChatMessagesUser.onSnapshot(this.onCollectionUpdate);
-    ;
+
+  });
   
 
 
@@ -101,6 +102,12 @@ onCollectionUpdate = (querySnapshot) => {
   });
 };
 
+componentWillUnmount() {
+  this.unsubscribe();
+  this.authUnsubscribe();
+};
+
+
 //Adding messages to database
 addMessages() { 
   const message = this.state.messages[0];
@@ -119,13 +126,11 @@ addMessages() {
   onSend(messages = []) {
     this.setState(previousState => ({
       messages: GiftedChat.append(previousState.messages, messages),
-    }));
-  };
-
-  componentWillUnmount() {
-    this.unsubscribe();
-    this.authUnsubscribe();
- }
+    }), () => {
+      this.addMessages();
+    })
+  }
+ 
  
   renderBubble(props) {
     //adding color to text bubbles
@@ -185,3 +190,7 @@ const styles = StyleSheet.create({
       justifyContent: "center",
   },
 })
+
+
+
+
