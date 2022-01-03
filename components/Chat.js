@@ -59,7 +59,23 @@ firebase.initializeApp(firebaseConfig);
     //referencing firestone collection
     this.referenceChatMessages = firebase.firestore().collection("messages");
 
-  this.unsubscribe = this.referenceChatMessages.onSnapshot(this.onCollectionUpdate)
+  this.unsubscribe = this.referenceChatMessages.onSnapshot(this.onCollectionUpdate);
+
+  this.authUnsubscribe = firebase.auth().onAuthStateChanged(async (user) => {
+    if (!user) {
+      await firebase.auth().signInAnonymously();
+    }
+  
+    //update user state with currently active user data
+    this.setState({
+      uid: user.uid,
+      loggedInText: 'Hello there',
+      messages: [],
+    });
+    this.unsubscribe = this.referenceChatMessages
+       .orderBy("createdAt", "desc")
+       .onSnapshot(this.onCollectionUpdate);
+  });
 }
 
   //function to listen for changes in collection and retrieve that change in order to update state and render in view
@@ -86,14 +102,29 @@ onCollectionUpdate = (querySnapshot) => {
   });
 };
 
+//Adding messages to database
+addMessages() { 
+  const message = this.state.messages[0];
+  // add a new messages to the collection
+  this.referenceChatMessages.add({
+      _id: message._id,
+      text: message.text || "",
+      createdAt: message.createdAt,
+      user: this.state.user,
+      image: message.image || "",
+      location: message.location || null,
+  });
+}
+
   onSend(messages = []) {
     this.setState(previousState => ({
       messages: GiftedChat.append(previousState.messages, messages),
     }));
   };
-  
+
   componentWillUnmount() {
     this.unsubscribe();
+    this.authUnsubscribe();
  }
  
   renderBubble(props) {
