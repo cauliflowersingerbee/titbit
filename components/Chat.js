@@ -23,13 +23,23 @@ export default class Chat extends Component {
     super();
     this.state = {
       messages: [],
+      uid: 0,
+      user: {
+         _id: "",
+        name: "",
+        avatar: "",
+        },
     };
+  //initializing firebase
+  if (!firebase.apps.length){
+    firebase.initializeApp(firebaseConfig);
+    }
+
   };
+
   
-//initializing firebase
-if (!firebase.apps.length){
-firebase.initializeApp(firebaseConfig);
-}
+  
+
 
 
   componentDidMount() {
