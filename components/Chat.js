@@ -45,7 +45,13 @@ export default class Chat extends Component {
     //adding name to top of chat screen
     let { name } = this.props.route.params;
     this.props.navigation.setOptions({ title: name });
-    
+
+    //signing in anonymously
+    this.authUnsubscribe = firebase.auth().onAuthStateChanged(async (user) => {
+      if (!user) {
+        await firebase.auth().signInAnonymously();
+      }
+
     this.setState({
       messages: [
         {
@@ -72,10 +78,7 @@ export default class Chat extends Component {
     //referencing active user's firestone collection
     this.referenceChatMessagesUser = firebase.firestore().collection("messages").where("uid", "==", this.state.uid);
 
-  this.authUnsubscribe = firebase.auth().onAuthStateChanged(async (user) => {
-    if (!user) {
-      await firebase.auth().signInAnonymously();
-    }
+ 
   
     //update user state with currently active user data
     this.setState({
