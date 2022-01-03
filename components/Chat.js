@@ -46,11 +46,6 @@ export default class Chat extends Component {
     let { name } = this.props.route.params;
     this.props.navigation.setOptions({ title: name });
 
-    // listening to updates in the collection
-   this.unsubscribe = this.referenceChatMessages
-   .orderBy("createdAt", "desc")
-   .onSnapshot(this.onCollectionUpdate);
-
     //signing in anonymously
     this.authUnsubscribe = firebase.auth().onAuthStateChanged(async (user) => {
       if (!user) {
@@ -67,11 +62,16 @@ export default class Chat extends Component {
         avatar: "https://placeimg.com/140/140/any",
        },
     });
+
+   // listening to updates in the collection
+   this.unsubscribe = this.referenceChatMessages
+   .orderBy("createdAt", "desc")
+   .onSnapshot(this.onCollectionUpdate);
     //referencing current user
     this.referenceChatMessagesUser = firebase.firestore().collection("messages").where("uid", "==", this.state.uid);
 
   
-    this.unsubscribeChatMessageUser = this.referenceChatMessagesUser.onSnapshot(this.onCollectionUpdate);
+    //this.unsubscribeChatMessageUser = this.referenceChatMessagesUser.onSnapshot(this.onCollectionUpdate);
 
   });
   
