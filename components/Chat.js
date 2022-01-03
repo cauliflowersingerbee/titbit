@@ -57,9 +57,7 @@ firebase.initializeApp(firebaseConfig);
     })
 
     //referencing firestone collection
-    this.referenceChatMessages = firebase.firestore().collection("messages");
-
-  this.unsubscribe = this.referenceChatMessages.onSnapshot(this.onCollectionUpdate);
+    this.referenceChatMessages = firebase.firestore().collection("messages").where("uid", "==", this.state.uid);;
 
   this.authUnsubscribe = firebase.auth().onAuthStateChanged(async (user) => {
     if (!user) {
