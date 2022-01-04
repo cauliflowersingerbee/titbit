@@ -37,7 +37,7 @@ export default class Chat extends Component {
 
   // referencing Firestore message collection
   this.referenceChatMessages = firebase.firestore().collection("messages");
-
+  this.referenceChatMessagesUser = null;
   };
 
   componentDidMount() {
@@ -109,7 +109,7 @@ componentWillUnmount() {
 //Adding messages to database
 addMessages() { 
   const message = this.state.messages[0];
-  // add a new messages to the collection
+  // add new messages to the collection
   this.referenceChatMessages.add({
       _id: message._id,
       text: message.text || "",
