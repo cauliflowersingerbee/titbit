@@ -72,8 +72,8 @@ export default class Chat extends Component {
 
   
     //this.unsubscribeChatMessageUser = this.referenceChatMessagesUser.onSnapshot(this.onCollectionUpdate);
-
-  });
+   });
+  };
   
 
 
@@ -93,8 +93,6 @@ onCollectionUpdate = (querySnapshot) => {
           name: data.user.name,
           avatar: data.user.avatar
       },
-      image: data.image || null,
-      location: data.location || null,
     });
   });
   this.setState({
@@ -117,8 +115,6 @@ addMessages() {
       text: message.text || "",
       createdAt: message.createdAt,
       user: this.state.user,
-      image: message.image || "",
-      location: message.location || null,
        uid: this.state.uid,
   });
 }
