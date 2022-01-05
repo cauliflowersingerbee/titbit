@@ -68,11 +68,12 @@ export default class Chat extends Component {
   // this.unsubscribe = this.referenceChatMessages
    //.orderBy("createdAt", "desc")
    //.onSnapshot(this.onCollectionUpdate);
-    
+   
+   // listen for collection changes for current user
+   this.unsubscribeChatMessagesUser = this.referenceChatMessagesUser.onSnapshot(this.onCollectionUpdate);
    //referencing current user
     this.referenceChatMessagesUser = firebase.firestore().collection("messages").where("uid", "==", this.state.uid);
-    // listen for collection changes for current user
-    this.unsubscribeChatMessagesUser = this.referenceChatMessagesUser.onSnapshot(this.onCollectionUpdate);
+    
    });
   };
   
@@ -110,7 +111,7 @@ componentWillUnmount() {
 //Adding messages to database
 addMessages() { 
   const message = this.state.messages[0];
-  // add new messages to the collection
+  // add new messages to collection
   this.referenceChatMessages.add({
       _id: message._id,
       text: message.text || "",
