@@ -23,6 +23,7 @@ export default class Chat extends Component {
     super();
     this.state = {
       messages: [],
+      loggedInText: "",
       uid: 0,
       user: {
       _id: "",
@@ -53,8 +54,9 @@ export default class Chat extends Component {
       }         
     //updating user state with currently active user data
     this.setState({
-      uid: user.uid,
       messages: [],
+      loggedInText: "Please wait. You’re being authenticated.",
+      uid: user.uid,
       user: {
         _id: user.uid,
         name: name,
