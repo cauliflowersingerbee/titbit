@@ -23,12 +23,12 @@ export default class Chat extends Component {
     super();
     this.state = {
       messages: [],
-      //uid: 0,
-      //user: {
-        // _id: "",
-        //name: "",
-        //avatar: "",
-        //},
+      uid: 0,
+      user: {
+      _id: "",
+      name: "",
+      avatar: "",
+      },
     };
   //initializing firebase
   if (!firebase.apps.length){
@@ -54,7 +54,6 @@ export default class Chat extends Component {
     //updating user state with currently active user data
     this.setState({
       uid: user.uid,
-      loggedInText: 'Hello there',
       messages: [],
       user: {
         _id: user.uid,
@@ -161,8 +160,9 @@ return (
         messages={this.state.messages}
         onSend={messages => this.onSend(messages)}
         user={{
-          _id: 1,
+          _id: this.state.user._id,
           name: this.state.name,
+          avatar: this.state.user.avatar
           }}
       />    
       { Platform.OS === 'android' ? <KeyboardAvoidingView behavior="height" /> : null
