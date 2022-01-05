@@ -109,7 +109,7 @@ componentWillUnmount() {
 
 
 //Adding messages to database
-addMessages() { 
+addMessage() { 
   const message = this.state.messages[0];
   // add new messages to collection
   this.referenceChatMessages.add({
@@ -125,7 +125,7 @@ addMessages() {
     this.setState(previousState => ({
       messages: GiftedChat.append(previousState.messages, messages),
     }), () => {
-      this.addMessages();
+      this.addMessage();
     })
   }
  
