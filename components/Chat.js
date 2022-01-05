@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { GiftedChat, Bubble } from 'react-native-gifted-chat'
-import { StyleSheet, View, Platform, KeyboardAvoidingView } from 'react-native';
+import { StyleSheet, View, Platform, KeyboardAvoidingView, Text } from 'react-native';
 //importing firebase:
 import * as firebase from 'firebase';
 import "firebase/firestore";
@@ -55,7 +55,7 @@ export default class Chat extends Component {
     //updating user state with currently active user data
     this.setState({
       messages: [],
-      loggedInText: "Please wait. You’re being authenticated.",
+      loggedInText: "Hello there!",
       uid: user.uid,
       user: {
         _id: user.uid,
@@ -64,15 +64,15 @@ export default class Chat extends Component {
        },
     });
 
-   // listening to updates in the collection
-   this.unsubscribe = this.referenceChatMessages
-   .orderBy("createdAt", "desc")
-   .onSnapshot(this.onCollectionUpdate);
-    //referencing current user
+   // listening to updates in the collection:
+  // this.unsubscribe = this.referenceChatMessages
+   //.orderBy("createdAt", "desc")
+   //.onSnapshot(this.onCollectionUpdate);
+    
+   //referencing current user
     this.referenceChatMessagesUser = firebase.firestore().collection("messages").where("uid", "==", this.state.uid);
-
-  
-    //this.unsubscribeChatMessageUser = this.referenceChatMessagesUser.onSnapshot(this.onCollectionUpdate);
+    // listen for collection changes for current user
+    this.unsubscribeChatMessagesUser = this.referenceChatMessagesUser.onSnapshot(this.onCollectionUpdate);
    });
   };
   
@@ -149,6 +149,7 @@ addMessages() {
 
     //rendering color picked by user
     let {bgColor} = this.props.route.params;
+  
 
 return (
   <View style={{
@@ -156,6 +157,7 @@ return (
       alignItems:'center', 
       justifyContent:'center', 
       backgroundColor: bgColor ? bgColor : "#fff"}}>
+  
     <View style={styles.giftedChat}>
           <GiftedChat
         renderBubble={this.renderBubble.bind(this)}
@@ -167,6 +169,7 @@ return (
           avatar: this.state.user.avatar
           }}
       />    
+        <Text>{this.state.loggedInText}</Text>
       { Platform.OS === 'android' ? <KeyboardAvoidingView behavior="height" /> : null
  }
   </View>
