@@ -114,7 +114,7 @@ addMessages() {
       text: message.text || "",
       createdAt: message.createdAt,
       user: this.state.user,
-       uid: this.state.uid,
+      uid: this.state.uid,
   });
 }
 
