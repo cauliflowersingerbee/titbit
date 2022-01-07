@@ -41,6 +41,19 @@ export default class Chat extends Component {
   this.referenceChatMessagesUser = null;
   };
 
+  async getMessages() {
+    let messages = '';
+    try {
+      messages = await AsyncStorage.getItem('messages') || [];
+      this.setState({
+        messages: JSON.parse(messages)
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+  
+
   componentDidMount() {
 
     //adding name to top of chat screen
@@ -48,7 +61,7 @@ export default class Chat extends Component {
     this.props.navigation.setOptions({ title: name });
 
     this.getMessages();
-    
+
     //signing in anonymously
     this.authUnsubscribe = firebase.auth().onAuthStateChanged(async (user) => {
       if (!user) {
