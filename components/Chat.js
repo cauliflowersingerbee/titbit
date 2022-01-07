@@ -65,9 +65,9 @@ export default class Chat extends Component {
     });
 
    // listening to updates in the collection:
-  // this.unsubscribe = this.referenceChatMessages
-   //.orderBy("createdAt", "desc")
-   //.onSnapshot(this.onCollectionUpdate);
+   this.unsubscribe = this.referenceChatMessages
+   .orderBy("createdAt", "desc")
+   .onSnapshot(this.onCollectionUpdate);
    
    // listen for collection changes for current user
    this.unsubscribeChatMessagesUser = this.referenceChatMessagesUser.onSnapshot(this.onCollectionUpdate);
