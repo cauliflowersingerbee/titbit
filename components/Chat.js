@@ -7,6 +7,9 @@ import "firebase/firestore";
 //const firebase = require('firebase');
 //require('firebase/firestore');
 
+//importing netInfo
+import NetInfo from '@react-native-community/netinfo';
+
 //configuring firebase:
 const firebaseConfig = {
   apiKey: "AIzaSyD8TKk1420b4YNd6hB8e4oiz1ATXlad784",
@@ -142,6 +145,17 @@ addMessage() {
 async saveMessages() {
   try {
     await AsyncStorage.setItem('messages', JSON.stringify(this.state.messages));
+  } catch (error) {
+    console.log(error.message);
+  }
+}
+
+async deleteMessages() {
+  try {
+    await AsyncStorage.removeItem('messages');
+    this.setState({
+      messages: []
+    })
   } catch (error) {
     console.log(error.message);
   }
