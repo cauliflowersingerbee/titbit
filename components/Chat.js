@@ -144,6 +144,7 @@ addMessage() {
       messages: GiftedChat.append(previousState.messages, messages),
     }), () => {
       this.addMessage();
+      this.saveMessages();
     })
   }
  
