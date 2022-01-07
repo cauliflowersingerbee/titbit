@@ -197,6 +197,18 @@ async deleteMessages() {
       />
     )
   }
+
+  renderInputToolbar(props) {
+    if (this.state.isConnected == false) {
+    } else {
+      return(
+        <InputToolbar
+        {...props}
+        />
+      );
+    }
+  }
+  
   render() {
 
     //rendering color picked by user
