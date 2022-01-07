@@ -70,7 +70,8 @@ export default class Chat extends Component {
    .onSnapshot(this.onCollectionUpdate);
    
    // listen for collection changes for current user
-   this.unsubscribeChatMessagesUser = this.referenceChatMessagesUser.onSnapshot(this.onCollectionUpdate);
+   //this.unsubscribeChatMessagesUser = this.referenceChatMessagesUser.onSnapshot(this.onCollectionUpdate);
+   
    //referencing current user
     this.referenceChatMessagesUser = firebase.firestore().collection("messages").where("uid", "==", this.state.uid);
     
