@@ -4,6 +4,8 @@ import { StyleSheet, View, Platform, KeyboardAvoidingView, Text } from 'react-na
 //importing firebase:
 import * as firebase from 'firebase';
 import "firebase/firestore";
+//importing async storage
+import AsyncStorage from '@react-native-async-storage/async-storage';
 //const firebase = require('firebase');
 //require('firebase/firestore');
 
@@ -33,6 +35,7 @@ export default class Chat extends Component {
       name: "",
       avatar: "",
       },
+      isConnected: false,
     };
   //initializing firebase
   if (!firebase.apps.length){
