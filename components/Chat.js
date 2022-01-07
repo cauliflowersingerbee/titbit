@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { GiftedChat, Bubble } from 'react-native-gifted-chat'
+import { GiftedChat, Bubble, InputToolbar } from 'react-native-gifted-chat'
 import { StyleSheet, View, Platform, KeyboardAvoidingView, Text } from 'react-native';
 //importing firebase:
 import * as firebase from 'firebase';
@@ -208,7 +208,7 @@ async deleteMessages() {
       );
     }
   }
-  
+
   render() {
 
     //rendering color picked by user
