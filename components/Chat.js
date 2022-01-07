@@ -96,6 +96,16 @@ export default class Chat extends Component {
     this.referenceChatMessagesUser = firebase.firestore().collection("messages").where("uid", "==", this.state.uid);
     
    });
+ 
+   //finding out user's connection status
+   NetInfo.fetch().then(connection => {
+    if (connection.isConnected) {
+      console.log('online');
+    } else {
+      console.log('offline');
+    }
+  });
+
   };
   
 
