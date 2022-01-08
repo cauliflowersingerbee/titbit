@@ -226,6 +226,7 @@ return (
     <View style={styles.giftedChat}>
           <GiftedChat
         renderBubble={this.renderBubble.bind(this)}
+        renderInputToolbar={this.renderInputToolbar}
         messages={this.state.messages}
         onSend={messages => this.onSend(messages)}
         user={{
