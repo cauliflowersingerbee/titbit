@@ -49,39 +49,48 @@ export default class Chat extends Component {
     let { name } = this.props.route.params;
     this.props.navigation.setOptions({ title: name });
 
-    //signing in anonymously
-    this.authUnsubscribe = firebase.auth().onAuthStateChanged(async (user) => {
-      if (!user) {
-        //await firebase.auth().signInAnonymously();
-        let response= await firebase.auth().signInAnonymously();
-        user = response.user
-      }         
-    //updating user state with currently active user data
-    this.setState({
-      messages: [],
-      loggedInText: "Hello there!",
-      uid: user.uid,
-      user: {
-        _id: user.uid,
-        name: name,
-        avatar: "https://placeimg.com/140/140/any",
-       },
+    // checking if user is online 
+    NetInfo.fetch().then(connection => {
+      
+      if (connection.isConnected) {
+        this.setState({ isConnected: true });
+
+         // listens for updates in the collection
+         this.unsubscribe = this.referenceChatMessages
+         .orderBy("createdAt", "desc")
+         .onSnapshot(this.onCollectionUpdate)
+
+        // anonymous authentication of user
+        this.authUnsubscribe = firebase.auth().onAuthStateChanged(async (user) => {
+          if (!user) {
+            return await firebase.auth().signInAnonymously();
+          }
+          //updating user state with currently active user data
+          this.setState({
+            uid: user.uid,
+            messages: [],
+            user: {
+              _id: user.uid,
+              name: name,
+              avatar: "https://placeimg.com/140/140/any",
+            },
+          });
+          //referencing current user
+          this.refMsgsUser = firebase
+            .firestore()
+            .collection("messages")
+            .where("uid", "==", this.state.uid);
+        });
+         //saving messages locally to asyncStorage
+         this.saveMessages();
+      } else {
+        this.setState({ isConnected: false });
+        //getting messages from asyncStorage
+        this.getMessages();
+      }
     });
 
-   // listening to updates in the collection:
-   this.unsubscribe = this.referenceChatMessages
-   .orderBy("createdAt", "desc")
-   .onSnapshot(this.onCollectionUpdate);
-   
-   // listen for collection changes for current user
-   this.unsubscribeChatMessagesUser = this.referenceChatMessagesUser.onSnapshot(this.onCollectionUpdate);
-   
-   //referencing current user
-    this.referenceChatMessagesUser = firebase.firestore().collection("messages").where("uid", "==", this.state.uid);
-    
-   });
-  };
-  
+  }
 
 
   //function to listen for changes in collection and retrieve that change in order to update state and render in view
