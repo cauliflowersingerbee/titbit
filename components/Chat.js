@@ -191,6 +191,8 @@ async deleteMessages() {
       messages: GiftedChat.append(previousState.messages, messages),
     }), () => {
       this.addMessage();
+      //once the state object is updated, you’ll save its current 
+      //state into asyncStorage with this callback function:
       this.saveMessages();
     })
   }
