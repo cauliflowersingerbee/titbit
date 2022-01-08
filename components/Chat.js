@@ -43,6 +43,31 @@ export default class Chat extends Component {
   this.referenceChatMessagesUser = null;
   };
 
+  // saving message to AsyncStorage
+  async saveMessages() {
+    try {
+      await AsyncStorage.setItem(
+        'messages', 
+        JSON.stringify(this.state.messages)
+      );
+    } catch (error) {
+    console.log(error.message);
+    }
+  }
+
+  // deleting message from AsyncStorage
+  async deleteMessages() {
+    try {
+      await AsyncStorage.removeItem('messages');
+      this.setState({
+        messages: []
+      })
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
+
+
   componentDidMount() {
 
     //adding name to top of chat screen
@@ -144,7 +169,16 @@ addMessage() {
     })
   }
  
- 
+  // renders  chat input field toolbar only when user is online
+  renderInputToolbar(props) {
+    if (this.state.isConnected == false) {
+    } else {
+      return(
+        <InputToolbar {...props}/>
+      );
+    }
+  }
+
   renderBubble(props) {
     //adding color to text bubbles
     return (
@@ -177,6 +211,7 @@ return (
     <View style={styles.giftedChat}>
           <GiftedChat
         renderBubble={this.renderBubble.bind(this)}
+        renderInputToolbar={this.renderInputToolbar.bind(this)}
         messages={this.state.messages}
         onSend={messages => this.onSend(messages)}
         user={{
