@@ -72,9 +72,13 @@ export default class Chat extends Component {
     this.authUnsubscribe = firebase.auth().onAuthStateChanged(async (user) => {
       if (!user) {
         //await firebase.auth().signInAnonymously();
-        let response= await firebase.auth().signInAnonymously();
-        user = response.user
-      }         
+        try {
+            let response = await firebase.auth().signInAnonymously()
+            user = response.user
+        } catch (error) {
+            console.error(error)
+        }
+    }   
     //updating user state with currently active user data
     this.setState({
       messages: [],
@@ -93,7 +97,7 @@ export default class Chat extends Component {
    .onSnapshot(this.onCollectionUpdate);
    
    // listen for collection changes for current user
-   this.unsubscribeChatMessagesUser = this.referenceChatMessagesUser.onSnapshot(this.onCollectionUpdate);
+   //this.unsubscribeChatMessagesUser = this.referenceChatMessagesUser.onSnapshot(this.onCollectionUpdate);
    
    //referencing current user
     this.referenceChatMessagesUser = firebase.firestore().collection("messages").where("uid", "==", this.state.uid);
