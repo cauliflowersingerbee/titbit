@@ -74,6 +74,15 @@ export default class Chat extends Component {
     let { name } = this.props.route.params;
     this.props.navigation.setOptions({ title: name });
 
+    //finding out user's connection status
+   NetInfo.fetch().then(connection => {
+    if (connection.isConnected) {
+      console.log('online');
+    } else {
+      console.log('offline');
+    }
+  });
+
     this.getMessages();
 
     //signing in anonymously
@@ -111,15 +120,6 @@ export default class Chat extends Component {
     this.referenceChatMessagesUser = firebase.firestore().collection("messages").where("uid", "==", this.state.uid);
     
    });
- 
-   //finding out user's connection status
-   NetInfo.fetch().then(connection => {
-    if (connection.isConnected) {
-      console.log('online');
-    } else {
-      console.log('offline');
-    }
-  });
 
   };
   
