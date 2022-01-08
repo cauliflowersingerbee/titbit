@@ -215,6 +215,7 @@ async deleteMessages() {
     )
   }
 
+  //only render the default InputToolbar when the user is online
   renderInputToolbar(props) {
     if (this.state.isConnected == false) {
     } else {
