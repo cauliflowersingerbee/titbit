@@ -5,14 +5,10 @@ import { StyleSheet, View, Platform, KeyboardAvoidingView, Text } from 'react-na
 import * as firebase from 'firebase';
 import "firebase/firestore";
 //importing async storage
-import AsyncStorage from '@react-native-community/async-storage';
-//import AsyncStorage from '@react-native-async-storage/async-storage';
-
-//const firebase = require('firebase');
-//require('firebase/firestore');
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
 //importing netInfo
 import NetInfo from '@react-native-community/netinfo';
+
 
 //configuring firebase:
 const firebaseConfig = {
