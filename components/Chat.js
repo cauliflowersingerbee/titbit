@@ -49,11 +49,17 @@ export default class Chat extends Component {
   this.referenceChatMessagesUser = null;
   };
 
+  //function that loads the messages from asyncStorage:
   async getMessages() {
     let messages = '';
+    //wrap your logic in try and catch so that any errors will be caught.
     try {
+      //To read the messages in storage
       messages = await AsyncStorage.getItem('messages') || [];
+      //update your messages
       this.setState({
+        //asyncStorage can only store strings, you need to use 
+        //JSON.parse to convert the saved string back into an object
         messages: JSON.parse(messages)
       });
     } catch (error) {
