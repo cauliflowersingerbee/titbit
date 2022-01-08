@@ -74,52 +74,35 @@ export default class Chat extends Component {
     let { name } = this.props.route.params;
     this.props.navigation.setOptions({ title: name });
 
-    //finding out user's connection status
-   NetInfo.fetch().then(connection => {
-    if (connection.isConnected) {
-      console.log('online');
-    } else {
-      console.log('offline');
-    }
-  });
+    NetInfo.fetch().then((connection) => {
+      if (connection.isConnected) {
 
-    this.getMessages();
+        this.setState({ isConnected: true });
 
-    //signing in anonymously
-    this.authUnsubscribe = firebase.auth().onAuthStateChanged(async (user) => {
-      if (!user) {
-        //await firebase.auth().signInAnonymously();
-        try {
-            let response = await firebase.auth().signInAnonymously()
-            user = response.user
-        } catch (error) {
-            console.error(error)
-        }
-    }   
-    //updating user state with currently active user data
-    this.setState({
-      messages: [],
-      loggedInText: "Hello there!",
-      uid: user.uid,
-      user: {
-        _id: user.uid,
-        name: name,
-        avatar: "https://placeimg.com/140/140/any",
-       },
+        this.unsubscribe = this.referenceChatMessages.orderBy("createdAt", "desc").onSnapshot(this.onCollectionUpdate);
+
+        this.authUnsubscribe = firebase.auth().onAuthStateChanged(async (user) => {
+          if (!user) {
+            await firebase.auth().signInAnonymously();
+          }
+          this.setState({
+            uid: user.uid,
+            messages: [],
+            user: {
+              _id: user.uid,
+              name: name,
+              avatar: 'https://placeimg.com/140/140/any',
+            },
+          });
+        });
+
+        this.saveMessages();
+
+      } else {
+        this.setState({ isConnected: false });
+        this.getMessages();
+      }
     });
-
-   // listening to updates in the collection:
-   this.unsubscribe = this.referenceChatMessages
-   .orderBy("createdAt", "desc")
-   .onSnapshot(this.onCollectionUpdate);
-   
-   // listen for collection changes for current user
-   //this.unsubscribeChatMessagesUser = this.referenceChatMessagesUser.onSnapshot(this.onCollectionUpdate);
-   
-   //referencing current user
-    this.referenceChatMessagesUser = firebase.firestore().collection("messages").where("uid", "==", this.state.uid);
-    
-   });
 
   };
   
