@@ -5,8 +5,8 @@ import { StyleSheet, View, Platform, KeyboardAvoidingView, Text } from 'react-na
 import * as firebase from 'firebase';
 import "firebase/firestore";
 //importing async storage
-import AsyncStorage from '@react-native-community/async-storage';
-//import AsyncStorage from '@react-native-async-storage/async-storage';
+//import AsyncStorage from '@react-native-community/async-storage';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 //importing netInfo
 import NetInfo from '@react-native-community/netinfo';
 
@@ -72,16 +72,19 @@ export default class Chat extends Component {
     this.props.navigation.setOptions({ title: name });
 
     NetInfo.fetch().then((connection) => {
+      //checks if user is online
       if (connection.isConnected) {
-
         this.setState({ isConnected: true });
 
+        //listening for updates in collection
         this.unsubscribe = this.referenceChatMessages.orderBy("createdAt", "desc").onSnapshot(this.onCollectionUpdate);
 
+        //anonymous authentication 
         this.authUnsubscribe = firebase.auth().onAuthStateChanged(async (user) => {
           if (!user) {
             await firebase.auth().signInAnonymously();
           }
+          //updating with currently active user data
           this.setState({
             uid: user.uid,
             messages: [],
@@ -91,6 +94,12 @@ export default class Chat extends Component {
               avatar: 'https://placeimg.com/140/140/any',
             },
           });
+          //referencing current user
+          this.refMsgsUser = firebase
+            .firestore()
+            .collection("messages")
+            .where("uid", "==", this.state.uid);
+        });
         });
 
         this.saveMessages();
