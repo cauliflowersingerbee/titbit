@@ -196,6 +196,13 @@ addMessage() {
       />
     )
   }
+
+  //The renderCustomActions function is responsible for 
+  //creating the circle button:
+  renderCustomActions = (props) => {
+    return <CustomActions {...props} />;
+  };
+
   render() {
 
     //rendering color picked by user
