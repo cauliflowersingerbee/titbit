@@ -191,14 +191,6 @@ addMessage() {
       this.addMessage();
     });
   }
- 
-  // renders  chat input field toolbar only when user is online
-  renderInputToolbar(props) {
-		if (this.state.isConnected == false) {
-		} else {
-			return <InputToolbar {...props} />;
-		}
-	}
 
   renderBubble(props) {
     //adding color to text bubbles
@@ -216,6 +208,20 @@ addMessage() {
       />
     )
   }
+
+  // renders  chat input field toolbar only when user is online
+  renderInputToolbar(props) {
+    if (this.state.isConnected == false) {
+    } else {
+      return(
+        <InputToolbar
+        {...props}
+        />
+      );
+    }
+  }
+  
+
   render() {
 
     //rendering color picked by user
