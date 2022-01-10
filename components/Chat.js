@@ -67,6 +67,19 @@ export default class Chat extends Component {
     }
   }
 
+  //reading message from async storage
+  async getMessages() {
+    let messages = '';
+    try {
+      messages = await AsyncStorage.getItem('messages') || [];
+      this.setState({
+        messages: JSON.parse(messages)
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
 
   componentDidMount() {
 
