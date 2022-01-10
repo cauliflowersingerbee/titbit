@@ -92,7 +92,7 @@ export default class Chat extends Component {
     NetInfo.fetch().then(connection => {
       //Checking if user is online
       if (connection.isConnected) {
-        //this.setState({ isConnected: true });
+        this.setState({ isConnected: true });
 
          // listens for updates in the collection
          this.unsubscribe = this.referenceChatMessages
@@ -121,7 +121,6 @@ export default class Chat extends Component {
               name: name,
               avatar: "https://placeimg.com/140/140/any",
             },
-            isConnected: true
           });
           //referencing current user
           this.referenceChatMessagesUser = firebase
