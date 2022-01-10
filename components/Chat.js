@@ -68,7 +68,7 @@ export default class Chat extends Component {
     }
   }
 
-  //reading message from async storage
+  //reading messages from async storage
   async getMessages() {
     let messages = '';
     try {
@@ -90,7 +90,7 @@ export default class Chat extends Component {
 
     // checking if user is online 
     NetInfo.fetch().then(connection => {
-      
+      //Checking if user is online
       if (connection.isConnected) {
         this.setState({ isConnected: true });
 
