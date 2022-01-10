@@ -87,9 +87,17 @@ export default class Chat extends Component {
 
         // anonymous authentication of user
         this.authUnsubscribe = firebase.auth().onAuthStateChanged(async (user) => {
+          //(using try catch block to fix 'possible unhandled promise 
+          //rejection' error)
           if (!user) {
-            return await firebase.auth().signInAnonymously();
-          }
+            //await firebase.auth().signInAnonymously();
+            try {
+                let response = await firebase.auth().signInAnonymously()
+                user = response.user
+            } catch (error) {
+                console.error(error)
+            }
+        }
           //updating user state with currently active user data
           this.setState({
             uid: user.uid,
@@ -101,7 +109,7 @@ export default class Chat extends Component {
             },
           });
           //referencing current user
-          this.refMsgsUser = firebase
+          this.referenceChatMessagesUser = firebase
             .firestore()
             .collection("messages")
             .where("uid", "==", this.state.uid);
