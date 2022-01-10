@@ -187,9 +187,9 @@ addMessage() {
     this.setState(previousState => ({
       messages: GiftedChat.append(previousState.messages, messages),
     }), () => {
-      this.saveMessage();
+      this.saveMessages();
       this.addMessage();
-    })
+    });
   }
  
   // renders  chat input field toolbar only when user is online
