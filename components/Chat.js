@@ -121,6 +121,7 @@ export default class Chat extends Component {
               name: name,
               avatar: "https://placeimg.com/140/140/any",
             },
+            isConnected: true
           });
           //referencing current user
           this.referenceChatMessagesUser = firebase
