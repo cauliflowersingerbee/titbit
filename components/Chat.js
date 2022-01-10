@@ -187,6 +187,7 @@ addMessage() {
     this.setState(previousState => ({
       messages: GiftedChat.append(previousState.messages, messages),
     }), () => {
+      this.saveMessage();
       this.addMessage();
     })
   }
