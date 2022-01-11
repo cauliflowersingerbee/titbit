@@ -78,6 +78,19 @@ uploadImage = async (uri) => {
     return await snapshot.ref.getDownloadURL();
   };
 
+  getLocation = async () => {
+    const { status } = await Permissions.askAsync(Permissions.LOCATION);
+    if(status === 'granted') {
+      let result = await Location.getCurrentPositionAsync({});
+ 
+      if (result) {
+        this.setState({
+          location: result
+        });
+      }
+    }
+  }
+
 //defining array of strings to be displayed in action sheet
 onActionPress = () => {
    const options = ['Choose From Library', 'Take Picture', 'Send Location', 'Cancel'];
