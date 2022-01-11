@@ -11,7 +11,23 @@ export default class CustomActions extends React.Component {
 //taking photo
 launchCameraAsync
 //choosing photo from library
-launchImageLibraryAsync
+pickImage = async () => {
+    //asking user permission to access gallery
+    const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
+ 
+    if(status === 'granted') {
+      let result = await ImagePicker.launchImageLibraryAsync({
+        mediaTypes: 'Images',
+      }).catch(error => console.log(error));
+ 
+      if (!result.cancelled) {
+        this.setState({
+          image: result
+        });  
+      }
+ 
+    }
+  }
 //Uploading image to Firestore
 uploadImage = async (uri) => {
     //turning file into blob
