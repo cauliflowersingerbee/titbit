@@ -4,6 +4,35 @@ import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 export default class CustomActions extends React.Component {
 
+//Uploading image to Firestore
+uploadImage = async (uri) => {
+    //turning image into blob
+    const blob = await new Promise((resolve, reject) => {
+      const xhr = new XMLHttpRequest();
+      xhr.onload = function () {
+        resolve(xhr.response);
+      };
+      xhr.onerror = function (e) {
+        console.log(e);
+        reject(new TypeError("Network request failed"));
+      };
+      xhr.responseType = "blob";
+      xhr.open("GET", uri, true);
+      xhr.send(null);
+    });
+
+    const imageNameBefore = uri.split("/");
+    const imageName = imageNameBefore[imageNameBefore.length - 1];
+
+    const ref = firebase.storage().ref().child(`images/${imageName}`);
+
+    const snapshot = await ref.put(blob);
+
+    blob.close();
+
+    return await snapshot.ref.getDownloadURL();
+  };
+
 //defining array of strings to be displayed in action sheet
 onActionPress = () => {
    const options = ['Choose From Library', 'Take Picture', 'Send Location', 'Cancel'];
@@ -49,6 +78,9 @@ render() {
   }
 }
 
+CustomActions.contextTypes = {
+    actionSheet: PropTypes.func,
+   };
 
 const styles = StyleSheet.create({
     container: {
