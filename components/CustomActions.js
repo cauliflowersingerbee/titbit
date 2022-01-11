@@ -97,8 +97,11 @@ uploadImage = async (uri) => {
         });
  
       if (result) {
-        this.setState({
-          location: result
+        this.props.onSend({
+          location: {
+            longitude: result.coords.longitude,
+            latitude: result.coords.latitude,
+          },
         });
       }
     }
@@ -153,6 +156,7 @@ render() {
   }
 }
 
+//creating proptype for context
 CustomActions.contextTypes = {
     actionSheet: PropTypes.func,
    };

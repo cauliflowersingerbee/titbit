@@ -124,7 +124,8 @@ export default class Chat extends Component {
   }
 
 
-  //function to listen for changes in collection and retrieve that change in order to update state and render in view
+  //function to listen for changes in collection and retrieve 
+  //that change in order to update state and render in view
 onCollectionUpdate = (querySnapshot) => {
   const messages = [];
   // go through each document
@@ -140,6 +141,8 @@ onCollectionUpdate = (querySnapshot) => {
           name: data.user.name,
           avatar: data.user.avatar
       },
+      image: data.image || null,
+      location: data.location || null,
     });
   });
   this.setState({
@@ -164,6 +167,8 @@ addMessage() {
       createdAt: message.createdAt,
       user: this.state.user,
       uid: this.state.uid,
+      image: message.image || "",
+      location: message.location || null,
   });
 }
 
