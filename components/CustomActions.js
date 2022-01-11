@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import * as Permissions from 'expo-permissions';
 import * as ImagePicker from 'expo-image-picker';
+import * as Location from 'expo-location';
+import MapView from 'react-native-maps';
 
 
 export default class CustomActions extends React.Component {
@@ -28,6 +30,7 @@ takePhoto = async () => {
       console.error(error);
     }
   };
+
 //choosing photo from library
 pickImage = async () => {
     //asking user permission to access gallery
