@@ -1,10 +1,12 @@
 import React from "react";
+import firebase from "firebase";
+import "firebase/firestore";
 import PropTypes from 'prop-types';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import * as Permissions from 'expo-permissions';
 import * as ImagePicker from 'expo-image-picker';
 import * as Location from 'expo-location';
-import MapView from 'react-native-maps';
+
 
 
 export default class CustomActions extends React.Component {
@@ -144,17 +146,6 @@ render() {
       >
         <View style={[styles.wrapper, this.props.wrapperStyle]}>
           <Text style={[styles.iconText, this.props.iconTextStyle]}>+</Text>
-        </View>
-        <View style={{flex: 1, justifyContent: 'center'}}>
-            <Button
-                title="Pick an image from the library"
-                onPress={this.pickImage}
-            />
-
-            <Button
-                title="Take a photo"
-                onPress={this.takePhoto}
-            />
         </View>
       </TouchableOpacity>
     );
