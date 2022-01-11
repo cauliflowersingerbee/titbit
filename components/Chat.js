@@ -107,7 +107,7 @@ export default class Chat extends Component {
             },
           });
           //referencing current user
-          this.refMsgsUser = firebase
+          this.referenceChatMessagesUser = firebase
             .firestore()
             .collection("messages")
             .where("uid", "==", this.state.uid);
