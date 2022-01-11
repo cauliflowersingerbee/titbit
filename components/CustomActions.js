@@ -84,9 +84,13 @@ uploadImage = async (uri) => {
 
   //accessing and sending user location
   getLocation = async () => {
+    //first the permission
     const { status } = await Permissions.askAsync(Permissions.LOCATION);
     if(status === 'granted') {
-      let result = await Location.getCurrentPositionAsync({});
+      let result = await Location.getCurrentPositionAsync({}).catch(
+        (error) => {
+          console.error(error);
+        });
  
       if (result) {
         this.setState({
