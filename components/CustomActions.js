@@ -1,9 +1,16 @@
 import React from "react";
 import PropTypes from 'prop-types';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import * as Permissions from 'expo-permissions';
+import * as ImagePicker from 'expo-image-picker';
+
 
 export default class CustomActions extends React.Component {
 
+//taking photo
+launchCameraAsync
+//choosing photo from library
+launchImageLibraryAsync
 //Uploading image to Firestore
 uploadImage = async (uri) => {
     //turning file into blob
