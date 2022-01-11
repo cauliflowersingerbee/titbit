@@ -34,8 +34,8 @@ takePhoto = async () => {
 //choosing photo from library
 pickImage = async () => {
     //asking user permission to access gallery
-    const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
- 
+    const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+    try {
     if(status === 'granted') {
       let result = await ImagePicker.launchImageLibraryAsync({
         mediaTypes: 'Images',
@@ -46,9 +46,11 @@ pickImage = async () => {
           image: result
         });  
       }
- 
     }
+  } catch (error) {
+    console.error(error);
   }
+};
 //Uploading image to Firestore
 uploadImage = async (uri) => {
     //turning file into blob
