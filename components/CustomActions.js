@@ -27,7 +27,7 @@ uploadImage = async (uri) => {
     const ref = firebase.storage().ref().child(`images/${imageName}`);
     //using put to store content retrieved from Ajax request
     const snapshot = await ref.put(blob);
-
+    //closing the connection
     blob.close();
 
     return await snapshot.ref.getDownloadURL();
