@@ -8,6 +8,8 @@ export default class CustomActions extends React.Component {
 onActionPress = () => {
    const options = ['Choose From Library', 'Take Picture', 'Send Location', 'Cancel'];
    const cancelButtonIndex = options.length - 1;
+   //react's context class used to pass data through component
+   //tree without having to pass props manually
    this.context.actionSheet().showActionSheetWithOptions(
      {
        options,
