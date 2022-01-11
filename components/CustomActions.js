@@ -17,6 +17,7 @@ takePhoto = async () => {
     // permission to access user camera
     const { status } = await ImagePicker.requestCameraPermissionsAsync();
     try {
+    //accessing camera
       if (status === "granted") {
         let result = await ImagePicker.launchCameraAsync({
           mediaTypes: ImagePicker.MediaTypeOptions.All,
@@ -86,7 +87,7 @@ uploadImage = async (uri) => {
 
   //accessing and sending user location
   getLocation = async () => {
-    //first the permission
+    //first get permission from user
     const { status } = await Location.requestForegroundPermissionsAsync();
     try {
     if(status === 'granted') {
