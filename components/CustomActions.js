@@ -6,7 +6,7 @@ export default class CustomActions extends React.Component {
 
 //Uploading image to Firestore
 uploadImage = async (uri) => {
-    //turning image into blob
+    //turning file into blob
     const blob = await new Promise((resolve, reject) => {
       const xhr = new XMLHttpRequest();
       xhr.onload = function () {
