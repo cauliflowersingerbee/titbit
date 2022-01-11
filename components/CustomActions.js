@@ -86,6 +86,7 @@ uploadImage = async (uri) => {
   getLocation = async () => {
     //first the permission
     const { status } = await Location.requestForegroundPermissionsAsync();
+    try {
     if(status === 'granted') {
       let result = await Location.getCurrentPositionAsync({}).catch(
         (error) => {
@@ -98,7 +99,11 @@ uploadImage = async (uri) => {
         });
       }
     }
+  } catch (error) {
+    console.error(error);
   }
+};
+
 
 //defining array of strings to be displayed in action sheet
 onActionPress = () => {
