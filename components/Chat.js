@@ -222,6 +222,7 @@ return (
         renderInputToolbar={this.renderInputToolbar.bind(this)}
         messages={this.state.messages}
         onSend={messages => this.onSend(messages)}
+        renderActions={this.renderCustomActions}
         user={{
           _id: this.state.user._id,
           name: this.state.name,
