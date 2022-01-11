@@ -36,21 +36,23 @@ pickImage = async () => {
     //asking user permission to access gallery
     const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
     try {
-    if(status === 'granted') {
-      let result = await ImagePicker.launchImageLibraryAsync({
-        mediaTypes: 'Images',
-      }).catch(error => console.log(error));
- 
-      if (!result.cancelled) {
-        this.setState({
-          image: result
-        });  
+        if (status === "granted") {
+          let result = await ImagePicker.launchImageLibraryAsync({
+            mediaTypes: ImagePicker.MediaTypeOptions.Images, 
+          }).catch((error) => {
+            console.error(error);
+          });
+          if (!result.cancelled) {
+            const imageUrl = await this.uploadImage(result.uri);
+            this.props.onSend({ image: imageUrl });
+          }
+        }
+      } catch (error) {
+        console.error(error);
       }
-    }
-  } catch (error) {
-    console.error(error);
-  }
-};
+    };
+  
+
 //Uploading image to Firestore
 uploadImage = async (uri) => {
     //turning file into blob
@@ -80,6 +82,7 @@ uploadImage = async (uri) => {
     return await snapshot.ref.getDownloadURL();
   };
 
+  //accessing and sending user location
   getLocation = async () => {
     const { status } = await Permissions.askAsync(Permissions.LOCATION);
     if(status === 'granted') {
