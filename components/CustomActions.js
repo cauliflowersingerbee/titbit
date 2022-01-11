@@ -6,6 +6,7 @@ import * as ImagePicker from 'expo-image-picker';
 
 
 export default class CustomActions extends React.Component {
+    
 
 //taking photo
 launchCameraAsync
@@ -73,12 +74,23 @@ render() {
       <TouchableOpacity
         accessible={true}
         accessibilityLabel="More options"
-        accessibilityHint="Let’s you choose to send an image or your geolocation."
+        accessibilityHint="Lets you choose to send an image or your geolocation."
         style={[styles.container]}
         onPress={this.onActionPress}
       >
         <View style={[styles.wrapper, this.props.wrapperStyle]}>
           <Text style={[styles.iconText, this.props.iconTextStyle]}>+</Text>
+        </View>
+        <View style={{flex: 1, justifyContent: 'center'}}>
+            <Button
+                title="Pick an image from the library"
+                onPress={this.pickImage}
+            />
+
+            <Button
+                title="Take a photo"
+                onPress={this.takePhoto}
+            />
         </View>
       </TouchableOpacity>
     );

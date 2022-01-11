@@ -34,6 +34,8 @@ export default class Chat extends Component {
       avatar: "",
       },
       isConnected: false,
+      image: null,
+      location: null,
     };
   //initializing firebase
   if (!firebase.apps.length){
