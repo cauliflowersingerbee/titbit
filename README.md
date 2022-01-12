@@ -4,7 +4,6 @@
 Titibit is a chat app for mobile devices, built using React Native. The app 
 provides users with a chat interface and options to share images and their
 location.
-https://user-images.githubusercontent.com/86426968/149174504-0a59b4d6-b0e7-4c45-ab3f-de1f5eaf734a.jpeg
 
 ## User Stories
 1. As a new user, I want to be able to easily enter a chat room so I can quickly start talking to my
