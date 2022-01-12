@@ -132,7 +132,7 @@ onActionPress = () => {
            return this.takePhoto();
          case 2:
            console.log('user wants to get their location');
-         default:
+           return this.getLocation();
        }
      },
    );
