@@ -126,7 +126,7 @@ onActionPress = () => {
        switch (buttonIndex) {
          case 0:
            console.log('user wants to pick an image');
-           return;
+           return this.pickImage();
          case 1:
            console.log('user wants to take a photo');
            return;

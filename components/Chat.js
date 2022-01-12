@@ -230,7 +230,7 @@ addMessage() {
     return null;
   }
 
-  //function for creating the circle button:
+  //function for creating the circle action button:
   renderCustomActions = (props) => {
     return <CustomActions {...props} />;
   };
