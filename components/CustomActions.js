@@ -142,6 +142,7 @@ onActionPress = () => {
 render() {
     return (
       <TouchableOpacity
+      //Adding accessibility features
         accessible={true}
         accessibilityLabel="More options"
         accessibilityHint="Lets you choose to send an image or your geolocation."
