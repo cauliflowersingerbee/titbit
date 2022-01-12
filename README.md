@@ -57,5 +57,6 @@ and location data.
 - To launch the app run expo start or npm start
 - Execute the app on a device or emulator
 
+![IMG_747578202B17-1](https://user-images.githubusercontent.com/86426968/149176115-4dd1cb42-70d6-436d-9ab2-309105211bc4.jpeg)
 
 
