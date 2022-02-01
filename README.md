@@ -1,7 +1,5 @@
 # titbit
 
-![IMG_747578202B17-1](https://user-images.githubusercontent.com/86426968/149176115-4dd1cb42-70d6-436d-9ab2-309105211bc4.jpeg)
-
 ## Overview
 
 Titibit is a chat app for mobile devices, built using React Native. The app 
@@ -60,6 +58,6 @@ and location data.
 - To launch the app run expo start or npm start
 - Execute the app on a device or emulator
 
-
+![titbit](https://user-images.githubusercontent.com/86426968/152056261-da258b3e-a269-473c-9a58-c87be6b9f37c.gif)
 
 
